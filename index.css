@@ -1,0 +1,326 @@
+/* Impossibile usare un framework per fare il css di sto sito */
+
+:root{
+
+    --navbar-padding-top-bottom: 0;
+    --navbar-padding-left-right: 0;
+    --navbar-height: 4rem;
+    --navbar-button-margin: 10px;
+
+    --main-content-marginH: 1em;
+    --main-content-marginW: 1em;
+
+
+    --color-main: rgb(121, 180, 183);
+    --color-titles: #e6e8ea;
+    --color-text: #e6e8ea;
+    --color-background: #272727;
+
+    --color-primary: #98c2dd;
+    --color-secondary: #1a6793;
+    --color-accent: #20a6f3;
+
+
+
+}
+
+*{
+
+margin: 0;
+padding: 0;
+font-family:Helvetica;
+}
+
+
+body{
+
+    background-color: var(--color-background);
+    overflow: scroll;
+}
+
+
+.main-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    /* Toccare solo la varibile per la W. Questo è per fare in modo che il contenuto della pagina sia */
+    margin: calc(var(--navbar-height) + var(--main-content-marginH)) /*<-W H->*/ var(--main-content-marginW);
+
+}
+
+/* Logo */
+
+.img-logo{
+
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: calc(var(--main-content-marginW) / 2);
+
+    aspect-ratio: 1 / 1;
+    height: var(--navbar-height);
+    fill: rgb(121, 180, 183);
+    opacity: 70%;
+}
+
+/* container della navbar padre di button-container e button. */
+/* Navbar: .navbar(<ul>) > .button<li> > .button-text <div>, .button-link<a>*/
+.navbar{
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* z-index: -1 perchè sennò l'immagine di profilo renderizzava sotto. */
+    z-index: -1;
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    padding: var(--navbar-padding-top-bottom) var(--navbar-padding-left-right) ;
+
+
+}
+/* <ul> che contiene tutti i bottoni */
+.button-container{
+
+    display: inline-flex;
+    position: absolute;
+    width: 90%;
+    left:  calc(var(--navbar-height) + var(--navbar-button-margin)); /* MODIFICA NO PERCENT*/
+    height: 100%;
+    min-height: fit-content;
+    list-style-type: none;
+    text-align: center;
+    justify-content: left;
+
+
+}
+
+
+/* Contiene gli elementi che servono alla navbar per funzionare un <a> per il link e un <div> per il testo */
+.button{
+    aspect-ratio: 2.5 / 1;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    min-width: fit-content;
+    height: calc(100% - var(--navbar-padding-top-bottom));
+
+    /* Non toccare, centra il testo nei bottoni. sia in verticale che in orizzontale */
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+
+    border-radius: 200px;
+}
+
+/* <div> che contiene il testo */
+.button-text{
+    color: var(--color-titles);
+    
+    position: absolute;
+}
+
+.button:hover{
+
+    transform: scale(1.05);
+    background-color: #1a679377;
+    cursor: pointer;
+    transition: transform .1s, background-color .1s;
+
+
+}
+
+.button:hover .button-text{
+
+    color: var(--color-primary);
+    transition: all .14s ease-in;
+
+}
+
+/* link per il reindirizzamento alla pagina */
+.button-link{
+
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+
+}
+
+
+
+
+/* Asset random. */
+
+.title{
+    position: relative;
+    color: var(--color-titles);
+    display: flex;
+    flex-direction: column;
+}
+
+.subtitle{
+
+    position: relative;
+    color: var(--color-titles);
+    display: flex;
+    flex-direction: relative;
+
+
+}
+.content{
+
+    color: var(--color-text);
+    display: flex;
+    word-wrap: break-word;
+    font-family: Consolas;
+}
+
+
+/* Card project styling */
+
+
+/*Contenitore delle carte progetto. */
+.project-cards-container{
+
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap;  se 'wrap' rimuove carosello.*/
+    width: 100%;
+    height: max-content;
+    background-color: transparent;
+    align-items: center;
+    overflow-x: scroll;
+    overflow-y: visible;
+
+
+
+}
+/*  Carta progetto singola */
+.card{
+    outline: 1px solid rgb(26, 26, 26);
+    position: relative;
+    aspect-ratio: 16/9;
+    display: flex;
+    height: 9em;
+    background-color: rgb(0, 0, 0);
+    margin-right: 10px;
+    background-image: url('github.jpg');
+    background-size: contain;
+    border-radius: 10px;
+    /* align-items: center; */
+    box-shadow:  0px 0px 5px 1px rgba(0,0,0,0.5);
+    /* overflow-y: hidden; */
+    justify-content: center; /* card-content centro oriz */
+    margin-bottom: 10px;
+
+    overflow:clip;
+    text-decoration: none;
+    
+}
+
+
+.card:hover::before{
+    opacity: 1;
+}
+
+.card::before{
+    background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    #20a6f32c,
+    transparent 50%
+    );
+    content: "";
+    left: 0;
+    top: 0;
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    transition: opacity 500ms;
+    /* z-index: 2; */
+    
+}
+
+/* Pop up carta  */
+
+.card-title{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    font-family: Consolas;
+    height: 0rem ;
+    margin-top: auto;
+    color: var(--color-titles);
+    align-items: center;
+    justify-content: center; /* testo oriz*/
+    background-color: #181818;
+    border-radius: 7px;
+    padding-left: 5px;
+    font-weight: 400;
+    z-index: 2;
+    overflow: hidden;
+    text-decoration: none;
+    /* backdrop-filter: blur(10px); */
+}
+
+/* Prima veniva animata la posizione del <div> in se, ora viene animata l'altezza */
+
+
+/* Animazione per far salire il titolo */
+.card .card-title{
+
+
+    transition: all .25s ease-out;
+
+
+}
+
+.card:hover .card-title{
+
+    height: 3rem;
+    
+    transition: all .25s ease-out;
+
+
+
+}
+
+
+
+
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #88888859;
+    width: 5px;
+    border-radius: 5px;
+
+
+
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color:#20a6f36b;
+
+  }
