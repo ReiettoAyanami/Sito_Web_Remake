@@ -1,49 +1,72 @@
 // TODO: Pulire il codice. Per favore.
 
 
+class PageLoader{
+
+    constructor(content, navbar){
+        
+        this.content = content;
+        this.navbar = navbar;
+
+        this.navbar.forEach(
+
+            (button) => {
+        
+                button.addEventListener("click", 
+
+                    (e) => {
+                        let url = e.target.getAttribute("any");
+                        this.replaceContent(url);
+
+                        // No per favore
+                        if(url == "about-me.html")
+                            loadCards();
 
 
-var content = document.getElementById("main-content");
-let navbar = document.querySelectorAll(".button");
-let content_inner = "";
-
-function button_click(event){
-
-    replaceMainContent(event.target.getAttribute("any"));
-    loadCards();
+                    }
 
 
-}
-
-navbar.forEach(
-
-    (button) => {
-
-        button.addEventListener("click", button_click)
-
+                )
+        
+        
+            }
+        
+        
+        
+        )
 
     }
 
 
 
-)
 
+    replaceContent(url) {
+        
+        let req = new XMLHttpRequest();
 
+        req.onloadend = async() => {
 
-function replaceMainContent(url){
-    let req = new XMLHttpRequest();
-
-    req.onloadend = async() => {
-
-        content.innerHTML = req.responseText;
+        this.content.innerHTML = req.responseText;
 
         
-    };
-    req.open('GET',url, false);
-    req.send();
-}
-replaceMainContent("about-me.html");
+        };
+        req.open('GET',url, false);
+        req.send();
 
+    }
+
+};
+
+
+
+
+
+var content = document.getElementById("main-content");
+let navbar = document.querySelectorAll(".button");
+let content_inner = "";
+let replacer = new PageLoader(content, navbar);
+
+replacer.replaceContent('about-me.html');
 
 
 const handleOnMouseMove = e => {
