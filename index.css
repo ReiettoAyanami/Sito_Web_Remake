@@ -38,7 +38,6 @@ body{
     overflow: scroll;
 }
 
-
 .main-content{
     display: flex;
     flex-direction: column;
@@ -323,4 +322,48 @@ body{
   ::-webkit-scrollbar-thumb:hover {
     background-color:#20a6f36b;
 
+  }
+
+
+
+  /* Font Awesome styling */
+
+  .fa-brands{
+    display: flex;
+    position: static;
+    margin-right: 10px;
+    color: var(--color-text);
+    transition: all .2s ease-out;
+    
+  }
+
+
+.fa-youtube:hover{
+
+    color: red;
+    font-size:large;
+    transition: all .2s ease-out;
+
+  }
+
+
+  .fa-twitter:hover{
+
+    color: rgb(0, 183, 255);
+    font-size:large;
+    transition: all .2s ease-out;
+
+  }
+  .fa-twitch:hover{
+
+    color: rgb(174, 0, 255);
+    font-size:large;
+    transition: all .2s ease-out;
+
+  }
+
+  .fa-instagram:hover{
+    color: rgb(255, 0, 106);
+    font-size:large;
+    transition: all .2s ease-out;
   }
